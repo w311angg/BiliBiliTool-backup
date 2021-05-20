@@ -11,6 +11,10 @@ on:
       count:
         description: '目标取关个数（-1表示全部）'
         required: true
+  workflow_run:
+    workflows: ["live-lottery-task"]
+    types:
+      - completed
 
 env:
   ASPNETCORE_ENVIRONMENT: ${{secrets.ENV}} # 运行环境
@@ -48,8 +52,8 @@ env:
   Ray_Security__WebProxy: ${{secrets.WEBPROXY}}
   Ray_Security__RandomSleepMaxMin: ${{secrets.RANDOMSLEEPMAXMIN}}
   # 批量取关任务：
-  Ray_UnfollowBatchedTaskConfig__GroupName: ${{ github.event.inputs.group }}
-  Ray_UnfollowBatchedTaskConfig__Count: ${{ github.event.inputs.count }}
+  Ray_UnfollowBatchedTaskConfig__GroupName: ${{ github.event.inputs.group }}||'天选时刻'
+  Ray_UnfollowBatchedTaskConfig__Count: ${{ github.event.inputs.count }}||'-1'
 
 jobs:
   run-task:
