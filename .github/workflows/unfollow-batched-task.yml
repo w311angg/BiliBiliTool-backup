@@ -52,8 +52,8 @@ env:
   Ray_Security__WebProxy: ${{secrets.WEBPROXY}}
   Ray_Security__RandomSleepMaxMin: ${{secrets.RANDOMSLEEPMAXMIN}}
   # 批量取关任务：
-  Ray_UnfollowBatchedTaskConfig__GroupName: ${{ github.event.inputs.group }}||'天选时刻'
-  Ray_UnfollowBatchedTaskConfig__Count: ${{ github.event.inputs.count }}||'-1'
+  Ray_UnfollowBatchedTaskConfig__GroupName: ${{ github.event.inputs.group || '天选时刻' }}
+  Ray_UnfollowBatchedTaskConfig__Count: ${{ github.event.inputs.count || '-1' }}
 
 jobs:
   run-task:
