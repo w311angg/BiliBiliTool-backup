@@ -1,0 +1,17 @@
+name: CI
+on: 
+   #watch:
+   # types: started
+   workflow_dispatch:
+jobs:
+  build:
+    #if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: SSH connection to Actions
+      uses: P3TERX/ssh2actions@v1.0.0
+      env:
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        secrets: ${{ secrets.COOKIESTR }}:${{ secrets.DAYOFEXCHANGESILVER2COIN }}:${{ secrets.ISOPENLIVELOTTERYTASK }}:${{ secrets.PUSHSERVERTSCKEY }}
